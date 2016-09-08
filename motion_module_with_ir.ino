@@ -44,9 +44,11 @@ void loop() {
     if(decoder.value == remoteCode ) {
       if(detectionMode == MOTION_MODE) {
         detectionMode = OFF_MODE;
+        digitalWrite(ledIndicatorPin, LOW);
       } else if(detectionMode == OFF_MODE) {
         detectionMode = MOTION_MODE;
         digitalWrite(externalDevicePin, HIGH);
+        digitalWrite(ledIndicatorPin, HIGH);
       }
     }
 
@@ -58,6 +60,7 @@ void loop() {
       if(digitalRead(motionPin)) {
         lastMotionTime = millis();
         digitalWrite(externalDevicePin, HIGH);
+        digitalWrite(ledIndicatorPin, HIGH);
       } else if(millis() > lastMotionTime + shutoffDuration){
         digitalWrite(externalDevicePin, LOW);
       }
