@@ -10,7 +10,7 @@ const int ledIndicatorPin = 13;
 
 unsigned long remoteCode = 0;
 unsigned long lastMotionTime;
-unsigned long shutoffDuration = 60000 * 5;
+unsigned long shutoffDuration = 60000 * 10;
 
 int detectionMode = MOTION_MODE;
 
@@ -46,6 +46,7 @@ void loop() {
         detectionMode = OFF_MODE;
       } else if(detectionMode == OFF_MODE) {
         detectionMode = MOTION_MODE;
+        digitalWrite(externalDevicePin, HIGH);
       }
     }
 
